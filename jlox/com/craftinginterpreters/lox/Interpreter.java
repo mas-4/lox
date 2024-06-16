@@ -41,8 +41,9 @@ public class Interpreter implements Expr.Visitor<Object> {
     }
 
     private String stringify(Object object) {
-        if (object == null) return "nil";
-        
+        if (object == null)
+            return "nil";
+
         if (object instanceof Double) {
             String text = object.toString();
             if (text.endsWith(".0")) { // integer repr hack 😝
@@ -82,6 +83,7 @@ public class Interpreter implements Expr.Visitor<Object> {
         // unreachable
         return null;
     }
+
     @Override
     public Object visitBinaryExpr(Expr.Binary expr) {
         Object left = evaluate(expr.left);
@@ -104,6 +106,15 @@ public class Interpreter implements Expr.Visitor<Object> {
             case LESS_EQUAL:
                 checkNumberOperands(expr.operator, left, right);
                 return (double) left <= (double) right;
+            case SLASH:
+                checkNumberOperands(expr.operator, left, right);
+                if ((double)right == 0.0) {
+                    throw new RuntimeError(expr.operator, "Divide by zero!");
+                }
+                return (double) left / (double) right;
+            case STAR:
+                checkNumberOperands(expr.operator, left, right);
+                return (double) left * (double) right;
             case MINUS:
                 checkNumberOperands(expr.operator, left, right);
                 return (double) left - (double) right;
@@ -115,10 +126,6 @@ public class Interpreter implements Expr.Visitor<Object> {
                     return (String) left + (String) right;
                 }
                 throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
-            case SLASH:
-                return (double) left / (double) right;
-            case STAR:
-                return (double) left * (double) right;
         }
 
         // unreachable. Or is it? 🥸
