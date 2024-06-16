@@ -1,6 +1,19 @@
+# Ch. 5 grammar
+
 expression  -> literal | unary | binary | grouping ;
 literal     -> NUMBER | STRING | "true" | "false" | "nil" ;
 grouping    -> "(" expression ")" ;
 unary       -> ( "-" | "!" ) expression ;
 binary      -> expression operator expression ;
 operator    -> "==" | "!=" | "<" | "<=" | ">" | ">=" | "+" | "-" | "*" | "/" ;
+
+# Ch. 6 grammar
+
+expression  -> equality ;
+equality    -> comparison ( ( "!=" | "==" ) comparison )* ;
+comparison  -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+factor      -> unary ( ( "/" | "*" ) unary )* 
+unary       -> ( "!" | "-" ) unary | primary;
+primary     -> NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")" ;
+
+Why are we using * instead of + for the right hands of these that basically require a right hand side?
