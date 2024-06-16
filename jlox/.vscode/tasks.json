@@ -2,9 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "genast",
+            "label": "genexpr",
+            // This was hell to write but now makes sense semantically and actually works
             "type": "shell",
-            "command": "${workspaceFolder}\\com\\craftinginterpreters\\lox",
+            "command": "${workspaceFolder}\\com\\craftinginterpreters\\lox", // this is the argument
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -12,12 +13,14 @@
             "problemMatcher": [],
             "options": {
                 "shell": {
-                    "executable": "java.exe",
+                    "executable": "java.exe", // this is the utility
                     "args": [
-                        "${workspaceFolder}\\com\\craftinginterpreters\\tool\\GenerateAst.java"
+                        "${workspaceFolder}\\com\\craftinginterpreters\\tool\\GenerateAst.java" // this is the command
                     ]
                 }
             }
+            // This didn't work with default powershell -Command because vs code is designed by monkeys at typewriters.
+            // I swear to God I hate them.
         }
     ],
 }
