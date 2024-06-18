@@ -19,7 +19,9 @@ primary     -> NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")" ;
 
 # Ch. 8 grammar
 
-program     -> statement* EOF ;
+program     -> declaration* EOF ;
+declaration -> varDecl | statement;
+varDecl     -> "var" IDENTIFIER ( "=" expression )? ";" ;
 statement   -> exprStmt | printStmt ;
 exprStmt    -> expression ";" ;
 printstmt   -> "print" expression ";"
@@ -29,4 +31,4 @@ comparison  -> term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 term        -> factor ( ( "-" | "+") factor )* ;
 factor      -> unary ( ( "/" | "*" ) unary )* 
 unary       -> ( "!" | "-" ) unary | primary;
-primary     -> NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")" ;
+primary     -> "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" | IDENTIFIER;
