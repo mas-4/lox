@@ -19,8 +19,8 @@ primary     -> NUMBER | STRING | "true" | "false" | "nil" | "(" expression ")" ;
 
 # Ch. 8 grammar
 
-program     -> statement* EOF;
-statement   -> exprStmt | printStmt;
+program     -> statement* EOF ;
+statement   -> exprStmt | printStmt ;
 exprStmt    -> expression ";" ;
 printstmt   -> "print" expression ";"
 expression  -> equality ;
