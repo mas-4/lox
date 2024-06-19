@@ -21,6 +21,16 @@
             }
             // This didn't work with default powershell -Command because vs code is designed by monkeys at typewriters.
             // I swear to God I hate them.
+        },
+        {
+            "label": "genexpr mac",
+            "type": "shell",
+            "command": "java ${workspaceFolder}/com/craftinginterpreters/tool/GenerateAst.java ${workspaceFolder}/com/craftinginterpreters/lox",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
         }
     ],
 }
