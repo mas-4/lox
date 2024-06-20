@@ -30,13 +30,16 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "run sample",
             // This was hell to write but now makes sense semantically and actually works
             "type": "shell",
-            "command": "${workspaceFolder}\\samples\\hello.lox", // this is the argument
+            "command": "com.craftinginterpreters.lox.Lox",
+            "args": [
+                "${workspaceFolder}/samples/${input:loxFile}" // use the input variable here
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -44,14 +47,19 @@
             "problemMatcher": [],
             "options": {
                 "shell": {
-                    "executable": "java.exe", // this is the utility
-                    "args": [
-                        "com.craftinginterpreters.lox.Lox" // this is the command
-                    ]
+                    "executable": "java.exe"
                 }
             }
             // This didn't work with default powershell -Command because vs code is designed by monkeys at typewriters.
             // I swear to God I hate them.
         }
     ],
+    "inputs": [
+        {
+            "id": "loxFile",
+            "type": "promptString",
+            "description": "Enter the Lox filename",
+            "default": "hello.lox"
+        }
+    ]
 }
