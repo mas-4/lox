@@ -40,12 +40,13 @@ primary     -> "true" | "false" | "nil" | NUMBER | STRING | "(" expression ")" |
 program     -> declaration* EOF ;
 declaration -> varDecl | statement;
 varDecl     -> "var" IDENTIFIER ( "=" expression )? ";" ;
-statement   -> exprStmt | ifStmt | printStmt | block ;
+statement   -> exprStmt | ifStmt | printStmt | whileStmt | block ;
+whileStmt   -> "while" "(" expression ")" statement ;
 ifStmt      -> "if" "(" expression ")" statement ( "else" statement )? ;
 block       -> "{" declaration* "}" ;
 exprStmt    -> expression ";" ;
 printstmt   -> "print" expression ";" ;
-expression  -> assignment ;
+expression  -> assignment ;     // the fact that expressions are assignments automatically adds `if (x = 3 == 4)` to grammar
 assignment  -> IDENTIFIER "=" assignment | logic_or ;
 logic_or    -> logic_and ( "or" logic_and )* ;
 logic_and   -> equality ( "and" equality )* ;

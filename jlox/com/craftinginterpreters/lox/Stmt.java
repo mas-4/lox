@@ -5,6 +5,7 @@ import java.util.List;
 abstract class Stmt {
   interface Visitor<R> {
     R visitPrintStmt(Print stmt);
+    R visitWhileStmt(While stmt);
     R visitVarStmt(Var stmt);
     R visitBlockStmt(Block stmt);
     R visitIfStmt(If stmt);
@@ -21,6 +22,20 @@ abstract class Stmt {
     }
 
     final Expr expression;
+  }
+  static class While extends Stmt {
+    While(Expr condition, Stmt body) {
+      this.condition = condition;
+      this.body = body;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+      return visitor.visitWhileStmt(this);
+    }
+
+    final Expr condition;
+    final Stmt body;
   }
   static class Var extends Stmt {
     Var(Token name, Expr initializer) {
