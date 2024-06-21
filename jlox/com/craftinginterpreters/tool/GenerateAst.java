@@ -30,6 +30,7 @@ public class GenerateAst {
             "Var        : Token name, Expr initializer",
             "Block      : List<Stmt> statements",
             "If         : Expr condition, Stmt thenBranch, Stmt elseBranch",
+            "Function   : Token name, List<Token> params, List<Stmt> body",
             "Expression : Expr expression"));
     }
 
