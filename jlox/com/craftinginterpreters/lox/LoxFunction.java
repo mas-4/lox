@@ -16,6 +16,7 @@ class LoxFunction implements LoxCallable {
         // > Alas, in our rush to cram closures in, we have let a tiny bit of dynamic scoping leak into the interpreter.
         // > In the next chapter, we will explore deeper into lexical scope and close that hole.
         // Uhh... That's kinda cool though. Why not.
+        // Update: it was not cool. And Nystrom resolved it. In a resolver. 😏
         Environment environment = new Environment(closure);
         for (int i = 0; i < declaration.params.size(); i++) {
             environment.define(declaration.params.get(i).lexeme, arguments.get(i)); // c😎😎😎l
