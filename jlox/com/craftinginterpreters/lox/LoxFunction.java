@@ -13,8 +13,8 @@ class LoxFunction implements LoxCallable {
     public Object call(Interpreter interpreter, List<Object> arguments) {
         // shouldn't this be a copy? Is it not possible to modify this?
         // that could be some cool dynamic programming though...
-        //  Alas, in our rush to cram closures in, we have let a tiny bit of dynamic scoping leak into the interpreter.
-        //  In the next chapter, we will explore deeper into lexical scope and close that hole.
+        // > Alas, in our rush to cram closures in, we have let a tiny bit of dynamic scoping leak into the interpreter.
+        // > In the next chapter, we will explore deeper into lexical scope and close that hole.
         // Uhh... That's kinda cool though. Why not.
         Environment environment = new Environment(closure);
         for (int i = 0; i < declaration.params.size(); i++) {

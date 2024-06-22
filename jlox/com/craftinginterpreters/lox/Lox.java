@@ -52,6 +52,13 @@ public class Lox {
         Parser parser = new Parser(tokens);
         List<Stmt> statements = parser.parse();
 
+        // Stop if there's a parsing error
+        if (hadError) return;
+
+        Resolver resolver = new Resolver(interpreter);
+        resolver.resolve(statements);
+
+        // Stop if there's a resolution error
         if (hadError) return;
 
         interpreter.interpret(statements);
