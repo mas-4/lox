@@ -1,7 +1,3 @@
-//
-// Created by malan on 6/23/2024.
-//
-
 #ifndef clox_debug_h
 #define clox_debug_h
 
