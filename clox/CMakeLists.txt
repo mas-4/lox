@@ -9,8 +9,6 @@ add_executable(clox src/main.c
                src/debug.c
                src/value.c
                src/vm.c
-               src/vm.h
                src/compiler.c
-               src/compiler.h
                src/scanner.c
-               src/scanner.h)
+               src/object.c)
